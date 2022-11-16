@@ -17,11 +17,16 @@ import java.util.Scanner;
             this.summary = summary;
         }
 
-        public int getChapters(){
+        public int getChapters()
+        {
             return chapters;
         }
-
-        public String toString(){
+        public String getBook()
+        {
+            return book;
+        }
+        public String toString()
+        {
             return "Book name: "+this.book+"\nChapters: "+this.chapters+"\nSummary: "+this.summary;
         }
 
@@ -49,6 +54,9 @@ import java.util.Scanner;
                     bookArr = bubbleSort(bookArr,count);
                     for(int i=0;i<count;i++)
                         System.out.println(bookArr[i]);
+                    bookArr = AlphaSort(bookArr,count);
+                    for(int i=0;i<count;i++)
+                        System.out.println(bookArr[i]);
 				}
 				catch(Exception e)
 				{
@@ -72,4 +80,21 @@ import java.util.Scanner;
 
                 return bookArr;
 			}
-    }
+			static BibleBook[] AlphaSort(BibleBook[] bookArr,int count)
+			{
+			BibleBook temp;
+				
+				for(int j=0; j < count-1; j++)
+				{    
+					for (int i = j+1; i<count; i++)
+					if(bookArr[j].book.compareTo(bookArr[i].book) > 0)
+					{
+						temp = bookArr[j];
+						bookArr[j] = bookArr[i];
+						bookArr[i] = temp;
+					}
+                 }
+				return bookArr;
+			}
+			}
+ 
