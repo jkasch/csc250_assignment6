@@ -16,22 +16,20 @@ import java.util.Scanner;
             this.chapters = chapters;
             this.summary = summary;
         }
-
         public int getChapters()
         {
-            return chapters;
+           return chapters;
         }
         public String getBook()
         {
-            return book;
+           return book;
         }
         public String toString()
         {
-            return "Book name: "+this.book+"\nChapters: "+this.chapters+"\nSummary: "+this.summary;
+            return "Book name: "+this.book+" Chapters: "+this.chapters+" Summary: "+this.summary;
         }
-
 			public static void main(String[] args)
-			{
+			{			
                 BibleBook[] bookArr = new BibleBook[100];
                 int count=0;
 				try
@@ -51,12 +49,27 @@ import java.util.Scanner;
 						//System.out.println("Book name: " + book + "(" + chapters + " chapters) - " + summary);
 					}
 					fileIn.close();
-                    bookArr = bubbleSort(bookArr,count);
+					Scanner input = new Scanner (System.in);
+					System.out.println("This program displays New Testament books, chapters, and summaries in alphabetical order by book name or chapter order. Provide one of the following two keywords: alphabetical chapter:");
+					String s = input.nextLine();
+					
+					if("chapter".equals(s))
+                    {
+					bookArr = bubbleSort(bookArr,count);
                     for(int i=0;i<count;i++)
                         System.out.println(bookArr[i]);
+                    }
+					else if("alphabetical".equals(s))
+					{
                     bookArr = AlphaSort(bookArr,count);
                     for(int i=0;i<count;i++)
                         System.out.println(bookArr[i]);
+					}
+					else
+					{
+						System.out.println("Invalid entry. Must provide one of the following two keywords: chapter alphabetical");
+					}
+					input.close();
 				}
 				catch(Exception e)
 				{
